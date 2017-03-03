@@ -3,7 +3,7 @@
 
 use yii\helpers\Html;
 ?>
-
+<?= CommentsWidget::widget();?>
 
 <section id="advertisement">
     <div class="container">
@@ -59,4 +59,5 @@ $gallery = $article->getImages();
             </div>
         </div>
     </div>
+    
 </section>

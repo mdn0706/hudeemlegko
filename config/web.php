@@ -23,6 +23,13 @@ $config = [
             'graphicsLibrary' => 'GD', //but really its better to use 'Imagick' 
             'placeHolderPath' => '@webroot/upload/store/no-image.png', // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
         ],
+        'comments' => [
+            'class' => 'mickey\commentator\Module',
+            'userModelClass' => 'common\models\User',
+            'isSuperuser' => 'Yii::$app->user->identity->isAdmin',
+            'userEmailField' => 'email',
+            'usernameField' => 'username',
+        ],
     ],
     'components' => [
         'request' => [
