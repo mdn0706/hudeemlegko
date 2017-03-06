@@ -105,7 +105,7 @@ use app\models\Article;
                             <div class="col-sm-6">
                                 <div class="articles">
                                     <div class="articles-gen-img">
-                                        <a href="<?= \yii\helpers\Url::to(['article/view', 'id' => $article->id]) ?>"><?= Html::img($mainImg->getUrl(), ['alt' => $article->title, 'title' => $article->title]) ?>
+                                        <a href="<?= \yii\helpers\Url::to(['article/view', 'id' => $article->id]) ?>"><?= Html::img($mainImg->getUrl('371x'), ['alt' => $article->title, 'title' => $article->title]) ?>
                                             <img class="mask" src="/images/article/topic-image-2.png" alt="" title=""></a>
                                     </div>
                                     <div class="articles-head">
@@ -119,7 +119,7 @@ use app\models\Article;
                                     <ul class="info">
                                         <li class="avatar">
 
-                                            <a href="<?= \yii\helpers\Url::to(['category/view', 'id' => $article->category->id]); ?>"><?= Html::img($catImg->getUrl(), ['class' => "topic-avatar", 'alt' => $article->title, 'title' => $article->title]); ?></a>
+                                            <a href="<?= \yii\helpers\Url::to(['category/view', 'id' => $article->category->id]); ?>"><?= Html::img($catImg->getUrl('30x'), ['class' => "topic-avatar", 'alt' => $article->title, 'title' => $article->title]); ?></a>
                                         </li>
 
                                         <li class="blog">
@@ -151,7 +151,7 @@ use app\models\Article;
                             <div class="col-sm-6">
                                 <div class="articles">
                                     <div class="articles-gen-img">
-                                        <a href="<?= \yii\helpers\Url::to(['article/view', 'id' => $article->id]) ?>"><?= Html::img($mainImg->getUrl(), ['alt' => $article->title, 'title' => $article->title]) ?>
+                                        <a href="<?= \yii\helpers\Url::to(['article/view', 'id' => $article->id]) ?>"><?= Html::img($mainImg->getUrl('371x'), ['alt' => $article->title, 'title' => $article->title]) ?>
                                             <img class="mask" src="/images/article/topic-image-2.png" alt="" title=""></a>
                                     </div>
                                     <div class="articles-head">
@@ -164,7 +164,7 @@ use app\models\Article;
                                     <hr noshade>
                                     <ul class="info">
                                         <li class="avatar">
-                                            <a href="<?= \yii\helpers\Url::to(['category/view', 'id' => $article->category->id]); ?>"><?= Html::img($catImg->getUrl(), ['class' => "topic-avatar", 'alt' => $article->title, 'title' => $article->title]); ?></a>
+                                            <a href="<?= \yii\helpers\Url::to(['category/view', 'id' => $article->category->id]); ?>"><?= Html::img($catImg->getUrl('30x'), ['class' => "topic-avatar", 'alt' => $article->title, 'title' => $article->title]); ?></a>
                                         </li>
                                         <li class="blog">
                                             <a href="<?= \yii\helpers\Url::to(['category/view', 'id' => $article->category->id]); ?>"><?= $article->category['name']; ?></a>

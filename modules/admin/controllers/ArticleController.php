@@ -63,9 +63,7 @@ class ArticleController extends Controller {
         $model = new Article();
 
         if ($model->load(Yii::$app->request->post())) {
-
             $model->text_preview = $model->anons($model->text);
-
             $model->save();
 
             Yii::$app->session->setFlash('success', "статья {$model->title} добавлена");
@@ -81,19 +79,20 @@ class ArticleController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-
             $model->text_preview = $model->anons($model->text);
-
             $model->save();
-
             $model->image = UploadedFile::getInstance($model, 'image');
 
             if ($model->image) {
                 $model->upload();
             }
+
             unset($model->image);
             $model->gallery = UploadedFile::getInstances($model, 'gallery');
-            $model->uploadGallery();
+
+            if ($model->gallery) {
+                $model->uploadGallery();
+            }
 
             Yii::$app->session->setFlash('success', "статья {$model->title} отредактирована");
             return $this->redirect(['view', 'id' => $model->id]);

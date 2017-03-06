@@ -35,11 +35,13 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'title', 'date', 'view'], 'required'],
+            [['category_id', 'title'], 'required'],
             [['category_id', 'view', 'comment', 'hide'], 'integer'],
+            [['view'], 'default', 'value' => 1 ],
             [['text'], 'string'],
             [['text_preview'], 'string'],
-            [['date'], 'safe'],
+            [['date'], 'date', 'format'=>'php:Y-m-d'],
+            [['date'], 'default', 'value' => date('Y-m-d')],
             [['title', 'img', 'keywords', 'description'], 'string', 'max' => 255],
             [['image'], 'file', 'extensions' => 'png, jpg'],
             [['gallery'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 8],
@@ -68,33 +70,33 @@ class Article extends \yii\db\ActiveRecord
         ];
     }
     
-    public function upload(){
-        if($this->validate()){
+    public function upload() {
+        if ($this->validate()) {
             $path = 'upload/store/' . $this->image->baseName . '.' . $this->image->extension;
             $this->image->saveAs($path);
             $this->attachImage($path, true);
             @unlink($path);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    
-    public function uploadGallery(){
-        if($this->validate()){
-            foreach($this->gallery as $file){
+
+    public function uploadGallery() {
+        if ($this->validate()) {
+            foreach ($this->gallery as $file) {
                 $path = 'upload/store/' . $file->baseName . '.' . $file->extension;
                 $file->saveAs($path);
                 $this->attachImage($path);
                 @unlink($path);
             }
-            
+
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    
+
     public function anons($string, $limit=150)
     {
         $string = strip_tags($string);
