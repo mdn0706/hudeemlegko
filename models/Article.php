@@ -35,4 +35,18 @@ class Article extends ActiveRecord{
     }
     
     
+    
+    public function getTags(){
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
+            ->viaTable('article-tag', ['article_id' => 'id']);
+    }
+    
+    public function getSelectedTags(){
+        
+        $selectedTags = $this->getTags()->select('id')->asArray()->all();
+        
+        debug($selectedTags);
+        
+    }
+    
 }

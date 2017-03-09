@@ -3,6 +3,8 @@
 namespace app\modules\admin\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 class Article extends \yii\db\ActiveRecord
 {
@@ -113,4 +115,29 @@ class Article extends \yii\db\ActiveRecord
             return $string;
         }
     }
+    
+    public function getTags(){
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
+            ->viaTable('article_tag', ['article_id' => 'id']);
+    }
+    
+    public function getSelectedTags(){
+        
+        $selectedIds = $this->getTags()->select('id')->asArray()->all();
+        
+        return ArrayHelper::getColumn($selectedIds , 'id');
+    }
+    
+    public function saveTags($tags){
+        
+        if(is_array($tags))
+        {
+            foreach($tags as $tag_id)
+            {
+                $tag = Tag::findOne($tag_id);
+                $this->link('tags', $tag);    
+            }
+        }
+    }
+    
 }
