@@ -132,6 +132,9 @@ class Article extends \yii\db\ActiveRecord
         
         if(is_array($tags))
         {
+            
+            $this->clearCurrentTags();
+            
             foreach($tags as $tag_id)
             {
                 $tag = Tag::findOne($tag_id);
@@ -139,5 +142,11 @@ class Article extends \yii\db\ActiveRecord
             }
         }
     }
+    
+    public function clearCurrentTags(){
+        
+        articleTag::deleteAll(['article_id' =>$this->id]);
+    }
+            
     
 }
