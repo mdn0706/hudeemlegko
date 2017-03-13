@@ -3,7 +3,6 @@
 
 use yii\helpers\Html;
 ?>
-<?= CommentsWidget::widget();?>
 
 <section id="advertisement">
     <div class="container">
